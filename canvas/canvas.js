@@ -50,5 +50,4 @@ class Canvas {
 		this.ctx.fillText(text, x, y);
 	}
 
-
 };
