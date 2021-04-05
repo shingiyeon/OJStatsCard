@@ -1,5 +1,5 @@
 let solvedApi = `https://api.solved.ac/v2/users/show.json?id=`;
-let myHandle = `nuclear852`
+
 async function solvedFetcher(handle) {
 	return fetcher.getJSONData(solvedApi, handle).then((res)=> {
 		if(res.success === false) {
