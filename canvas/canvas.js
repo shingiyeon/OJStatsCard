@@ -10,7 +10,10 @@ class Canvas {
 
 		document.body.appendChild(this.canvas);
 		this.ctx = this.canvas.getContext("2d");
-		console.log(this.ctx);
+
+		this.lines = [];
+		this.images = [];
+		this.texts = [];
 	}
 
 	setBorder(border) {
@@ -25,29 +28,34 @@ class Canvas {
 		this.canvas.style.backgroundColor = backgroundColor;
 	}
 
-	putImage(x, y, width, height, imageSrc) {	
-		var img = new Image();
-		img.onload = () => {
-			this.ctx.drawImage(img, x, y, width, height);
-		}
-		img.src = imageSrc;
+	putImage(x, y, width, height, imageSrc) {
+		this.images.push(new ImageDrawing(this.ctx, x, y, width, height, imageSrc));
 	}
 
 	putLine(sx, sy, ex, ey, strokeStyle = "#ffffff", lineWidth = 1) {
-		this.ctx.beginPath();
-		this.ctx.moveTo(sx, sy);
-		this.ctx.lineTo(ex, ey);
-		this.ctx.lineWidth = lineWidth;
-		this.ctx.strokeStyle = strokeStyle;
-		this.ctx.stroke();
+		this.lines.push(new Line(this.ctx, sx, sy, ex, ey, strokeStyle, lineWidth));
 	}
 
 	putText(x, y, text = "TEMP", font = "bold 15px verdana, sans-serif",
-	fontStyle = "#ffffff", textBaseline = "middle") {
-		this.ctx.font = font;
-		this.ctx.fillStyle = fontStyle;
-		this.ctx.textBaseline = textBaseline;
-		this.ctx.fillText(text, x, y);
+		fontStyle = "#ffffff", textBaseline = "middle"
+	) {
+		this.texts.push(new Text(this.ctx, x, y, text, font, fontStyle, textBaseline));
+	}
+
+	render() {
+		this.ctx.clearRect(0, 0, this.width, this.height);
+
+		this.lines.forEach((line) => {
+			line.draw();
+		});
+
+		this.images.forEach((image) => {
+			image.draw();
+		});
+
+		this.texts.forEach((text) => {
+			text.draw();
+		});
 	}
 
 };

@@ -1,4 +1,4 @@
-const solvedHandle = "jhnah917";
+const solvedHandle = "dodo8";
 const BOJHandle = "nuclear852";
 
 async function main() {
