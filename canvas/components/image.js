@@ -6,13 +6,16 @@ class ImageDrawing {
         this.width = width;
         this.height = height;
         this.imageSrc = imageSrc;
+
+        this.img = new Image();
+        this.img.src = this.imageSrc;
+        
+        this.img.onload = () => {
+            this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        }
     }
 
     draw() {
-        var img = new Image();
-        img.onload = () => {
-            this.ctx.drawImage(img, this.x, this.y, this.width, this.height);
-        }
-        img.src = this.imageSrc;
+        this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 }

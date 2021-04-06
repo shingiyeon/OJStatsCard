@@ -1,4 +1,5 @@
 const solvedLv = [
+	"Unknown",
 	"Bronze 5",
 	"Bronze 4",
 	"Bronze 3",
@@ -33,6 +34,7 @@ const solvedLv = [
 ]
 
 const solvedRating = [
+	0,
 	30, 60, 90, 120, 150,
 	200, 300, 400, 500, 650,
 	800, 950, 1100, 1250, 1400,
@@ -43,6 +45,8 @@ const solvedRating = [
 ]
 
 const solvedColorTable = [
+	"#000000",
+
 	"#9D4900",
 	"#A54F00",
 	"#AD5600",

@@ -11,6 +11,7 @@ class Canvas {
 		document.body.appendChild(this.canvas);
 		this.ctx = this.canvas.getContext("2d");
 
+		this.bgGradient = null;
 		this.lines = [];
 		this.images = [];
 		this.texts = [];
@@ -26,6 +27,10 @@ class Canvas {
 
 	setBackgroundColor(backgroundColor) {
 		this.canvas.style.backgroundColor = backgroundColor;
+	}
+
+	setBackgroundGradient(sx, sy, ex, ey, bsx, bsy, bex, bey, color1, color2, color3) {
+		this.bgGradient = new backgroundGradient(this.ctx, sx, sy, ex, ey, bsx, bsy, bex, bey, color1, color2, color3);
 	}
 
 	putImage(x, y, width, height, imageSrc) {
@@ -45,17 +50,22 @@ class Canvas {
 	render() {
 		this.ctx.clearRect(0, 0, this.width, this.height);
 
+		if (this.bgGradient !== null) {
+			this.bgGradient.draw();
+			this.bgGradient.updateMiddleVal();
+		}
 		this.lines.forEach((line) => {
 			line.draw();
 		});
-
 		this.images.forEach((image) => {
 			image.draw();
 		});
-
 		this.texts.forEach((text) => {
 			text.draw();
 		});
+
+		requestAnimationFrame(() => {this.render();});
+
 	}
 
 };
