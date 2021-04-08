@@ -29,8 +29,28 @@ class Canvas {
 		this.canvas.style.backgroundColor = backgroundColor;
 	}
 
-	setBackgroundGradient(sx, sy, ex, ey, bsx, bsy, bex, bey, color1, color2, color3) {
-		this.bgGradient = new backgroundGradient(this.ctx, sx, sy, ex, ey, bsx, bsy, bex, bey, color1, color2, color3);
+	setBgLinearGradient(sx, sy, ex, ey, bsx, bsy, bex, bey, color1, color2, color3) {
+		this.bgGradient = new bgLinearGradient(this.ctx, sx, sy, ex, ey, bsx, bsy, bex, bey, color1, color2, color3);
+	}
+
+	setBgParticleGradient(minR, maxR) {
+		this.bgGradient = new bgParticleGradient(this.ctx, this.canvas.width, this.canvas.height, minR, maxR);
+	}
+
+	putParticle(color) {
+		if( this.bgGradient.constructor !== bgParticleGradient) {
+			console.error("The background type is not bgParticleGradient");
+		} else {
+			this.bgGradient.createParticle(color);
+		}
+	}
+
+	putParticles(num, colors) {
+		if( this.bgGradient.constructor !== bgParticleGradient) {
+			console.error("The background type is not bgParticleGradient");
+		} else {
+			this.bgGradient.createParticles(num, colors);
+		}
 	}
 
 	putImage(x, y, width, height, imageSrc) {
@@ -52,7 +72,7 @@ class Canvas {
 
 		if (this.bgGradient !== null) {
 			this.bgGradient.draw();
-			this.bgGradient.updateMiddleVal();
+			this.bgGradient.update();
 		}
 		this.lines.forEach((line) => {
 			line.draw();

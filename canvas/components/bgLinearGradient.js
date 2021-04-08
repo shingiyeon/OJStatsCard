@@ -1,4 +1,4 @@
-class backgroundGradient {
+class bgLinearGradient {
 	constructor(ctx, sx, sy, ex, ey,
 		bsx, bsy, bex, bey,
 		color1, color2, color3) {
@@ -25,7 +25,7 @@ class backgroundGradient {
 		this.ctx.fillRect(this.bsx, this.bsy, this.bex, this.bey);
 	}
 
-	updateMiddleVal() {
+	update() {
 		if(this.flag) {
 			this.middleVal += 0.005;
 			if(this.middleVal >= 1.0) {
@@ -41,5 +41,4 @@ class backgroundGradient {
 			}
 		}
 	}
-
 };
