@@ -8,14 +8,14 @@ async function drawSolvedCanvas(solvedData) {
 	solvedCanvas.putText(65, 22, solvedData.user_id);
 	solvedCanvas.putLine(65, 33, 200, 33, "#ffffff", 1);
 	solvedCanvas.putText(65, 42, "Level: " + solvedData.level, "13px verdana, sans-serif")
-	solvedCanvas.putText(65, 55, solvedLv[solvedData.level], "bold 15px verdata, sans-serif")
+	solvedCanvas.putText(65, 55, solvedLv[solvedData.level], "bold 15px verdata, sans-serif", "5px")
   
-	solvedCanvas.putText(223, 24, "AC Rating", "12px verdana, sans-serif", "#eeeeee");
-	solvedCanvas.putText(getXOfRating(solvedData.rating), 48, solvedData.rating, "bold 28px Arial ", solvedColorTable[solvedData.level]);
+	solvedCanvas.putText(223, 24, "AC Rating", "12px verdana, sans-serif", "#eeeeee", "5px");
+	solvedCanvas.putText(getXOfRating(solvedData.rating), 48, solvedData.rating, "bold 28px Arial ", solvedColorTable[solvedData.level], "5px", "white");
 
 	//solvedCanvas.setBgLinearGradient(0, 0, 300, 150, 0, 0, 300, 150, "#DDCEDD", "#17CE3A", "#DDCEDD");
-	solvedCanvas.setBgParticleGradient(5, 10);
-	solvedCanvas.putParticles(5, solvedColorTable);
+	solvedCanvas.setBgParticleGradient(150, 300);
+	solvedCanvas.putParticles(15, solvedColorTable);
 	
 	const requiredRating = await getRequiredRating(solvedData);
 	console.log(requiredRating);
