@@ -14,6 +14,7 @@ class Canvas {
 		this.lines = [];
 		this.images = [];
 		this.texts = [];
+		this.loadingBars = []
 	}
 
 	setBorder(border) {
@@ -66,6 +67,10 @@ class Canvas {
 		this.texts.push(new Text(this.ctx, x, y, text, font, fontStyle, textBaseline));
 	}
 
+	putLoadingBar(sx, sy, mx, my, ex, ey, color1 = "#000000", color2 = "#ffffff", bgColor = "#ffffff") {
+		this.loadingBars.push(new LoadingBar(this.ctx, sx, sy, mx, my, ex, ey, color1, color2, bgColor));
+	}
+
 	render() {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -82,6 +87,10 @@ class Canvas {
 		this.texts.forEach((text) => {
 			text.draw();
 		});
+		this.loadingBars.forEach((loadingBar) => {
+			loadingBar.draw();
+			loadingBar.update();
+		})
 
 		requestAnimationFrame(() => {this.render();});
 

@@ -1,3 +1,5 @@
+let solvedCanvasConstant = {};
+
 async function drawSolvedCanvas(solvedData) {
 	const solvedCanvas = new Canvas("solvedCanvas", 300, 150);
 	solvedCanvas.setBorderRadius("5px");
@@ -13,13 +15,15 @@ async function drawSolvedCanvas(solvedData) {
 	solvedCanvas.putText(223, 24, "AC Rating", "12px verdana, sans-serif", "#eeeeee", "5px");
 	solvedCanvas.putText(getXOfRating(solvedData.rating), 48, solvedData.rating, "bold 28px Arial ", solvedColorTable[solvedData.level], "5px", "white");
 
-	//solvedCanvas.setBgLinearGradient(0, 0, 300, 150, 0, 0, 300, 150, "#DDCEDD", "#17CE3A", "#DDCEDD");
 	solvedCanvas.setBgParticleGradient(150, 300);
-	solvedCanvas.putParticles(15, solvedColorTable);
+	solvedCanvas.putParticles(5, solvedColorTable);
 	
 	const requiredRating = await getRequiredRating(solvedData);
 	console.log(requiredRating);
 	const mx = await getRatingLength(280 - 15, requiredRating, solvedRating[solvedData.level]);
+	console.log(mx);
+	solvedCanvas.putLoadingBar(15, 80, mx, 90, 280, 90);
+
 	solvedCanvas.render();
 }
 

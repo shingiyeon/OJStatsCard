@@ -1,9 +1,7 @@
 class LoadingBar {
-    constructor(sx, sy, mx, my, ex, ey,
-        color1 = "#000000",
-        color2 = "#ffffff",
-        bgColor = "#444444",
-        lineWidth = 1) {
+    constructor(ctx, sx, sy, mx, my, ex, ey,
+        color1, color2, bgColor) {
+            this.ctx = ctx;
             this.sx = sx;
             this.sy = sy;
             this.mx = mx;
@@ -14,8 +12,19 @@ class LoadingBar {
             this.color1 = color1;
             this.color2 = color2;
             this.bgColor = bgColor;
-            this.lineWidth = lineWidth;
+
+            this.loading = new bgLinearGradient(this.ctx, sx, sy, mx, my, this.color1, this.color2, this.color1);
         }
+
+    draw() {
+        this.ctx.fillStyle = this.bgColor;
+        this.ctx.fillRect(this.sx, this.sy, this.ex-this.sx, this.ey-this.sy);
+        this.loading.draw();
+    }
+
+    update() {
+        this.loading.update();
+    }
     
     
     
