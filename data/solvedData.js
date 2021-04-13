@@ -41,7 +41,7 @@ const solvedRating = [
 	1600, 1750, 1900, 2000, 2100,
 	2200, 2300, 2400, 2500, 2600,
 	2700, 2800, 2850, 2900, 2950,
-	3000, 999999999
+	3000, 3000
 ]
 
 const solvedColorTable = [
@@ -84,4 +84,10 @@ const solvedColorTable = [
 	"#FF3071",
 
 	"#CE8AE2",
+]
+
+const solvedBgColor = [
+	"#06beb6", "#48b1bf",
+	"#56ab2f", "#a8e063",
+	"#02aab0", "#00cdac" 
 ]

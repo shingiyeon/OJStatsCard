@@ -16,14 +16,19 @@ async function drawSolvedCanvas(solvedData) {
 	solvedCanvas.putText(getXOfRating(solvedData.rating), 48, solvedData.rating, "bold 28px Arial ", solvedColorTable[solvedData.level], "5px", "white");
 
 	solvedCanvas.setBgParticleGradient(150, 300);
-	solvedCanvas.putParticles(5, solvedColorTable);
+	solvedCanvas.putParticles(8, solvedBgColor);
 	
 	const requiredRating = await getRequiredRating(solvedData);
-	console.log(requiredRating);
-	const mx = await getRatingLength(280 - 15, requiredRating, solvedRating[solvedData.level]);
-	console.log(mx);
-	solvedCanvas.putLoadingBar(15, 80, mx, 90, 280, 90);
+	const mx = await getRatingLength(280 - 15, requiredRating, solvedRating[solvedData.level], solvedRating[solvedData.level+1]);
+	
+	solvedCanvas.putText(210, 75, String(solvedData.rating) + " / " + String(solvedRating[solvedData.level+1]), "12px verdana, sans-serif")
+	solvedCanvas.putLoadingBar(15, 80, mx + 15, 90, 280, 90, "#1d2671", "#0a0328", "#ffffff");
 
+	solvedCanvas.putText(30, 110, "rank: " + solvedData.rank, "14px verdana, sans-serif");
+	solvedCanvas.putText(130, 110, "exp: " + solvedData.exp, "14px verdana, sans-serif");
+	solvedCanvas.putText(30, 130, "class: " + solvedData.class, "14px verdana, sans-serif");
+	solvedCanvas.putText(130, 130, "vote: " + solvedData.vote_count, "14px verdana, sans-serif");
+	solvedCanvas.putText(240, 140, "solved.ac", "10px verdana, sans-serif")
 	solvedCanvas.render();
 }
 
@@ -36,8 +41,9 @@ function getRequiredRating(solvedData) {
 	return nextRating - solvedData.rating;
 }
 
-function getRatingLength(length, requiredRating, nextRating) {
-	return length - (requiredRating / nextRating) * length;
+function getRatingLength(length, requiredRating, curLvRating, nextLvRating) {
+	if(nextLvRating === curLvRating) return length;
+	return length - (requiredRating / (nextLvRating - curLvRating) ) * length;
 }
 
 function getXOfRating(currentRating) {
