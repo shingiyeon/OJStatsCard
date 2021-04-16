@@ -10,6 +10,14 @@ class Fetcher {
 		return data;
 	}
 
+	async getDataWithHeaders(api, handle, headers) {
+		const data = await fetch(api + handle, {
+			method : "GET",
+			headers : headers
+		});
+		return data;
+	}
+
 	async getJSONData(api, handle) {
 		const dataJSON = await this.getData(api, handle).then((data) => data.json());
 		return dataJSON;
