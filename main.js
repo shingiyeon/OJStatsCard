@@ -8,10 +8,12 @@ async function main() {
 		await drawSolvedCanvas(solvedData);
 	}	
 	const cofoData = await cofoAnalyzer(cofoHandle);
-	console.log(cofoData);
+	if(cofoData !== null) {
+		await drawCofoCanvas(cofoData);
+	}
 
-	const BOJData = await BOJFetcher(BOJHandle);
-	console.log(BOJData);
+	// const BOJData = await BOJFetcher(BOJHandle);
+	// console.log(BOJData);
 }
 
 main();

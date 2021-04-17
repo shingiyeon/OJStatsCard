@@ -1,5 +1,3 @@
-let solvedCanvasConstant = {};
-
 async function drawSolvedCanvas(solvedData) {
 	const solvedCanvas = new Canvas("solvedCanvas", 300, 150);
 	solvedCanvas.setBorderRadius("5px");
@@ -24,9 +22,17 @@ async function drawSolvedCanvas(solvedData) {
 	solvedCanvas.putText(210, 75, String(solvedData.rating) + " / " + String(solvedRating[solvedData.level+1]), "12px verdana, sans-serif")
 	solvedCanvas.putLoadingBar(15, 80, mx + 15, 90, 280, 90, "#1d2671", "#0a0328", "#ffffff");
 
+	solvedCanvas.putText(10, 110, "\uf091", "900 14px 'Font Awesome 5 Free'");
 	solvedCanvas.putText(30, 110, "rank: " + solvedData.rank, "14px verdana, sans-serif");
+	
+	solvedCanvas.putText(112, 110, '\uf0c3', "900 14px 'Font Awesome 5 Free'");
 	solvedCanvas.putText(130, 110, "exp: " + solvedData.exp, "14px verdana, sans-serif");
+
+	
+	solvedCanvas.putText(10, 130, '\uf19d', "900 14px 'Font Awesome 5 Free'");
 	solvedCanvas.putText(30, 130, "class: " + solvedData.class, "14px verdana, sans-serif");
+	
+	solvedCanvas.putText(108, 130, '\uf772', "900 14px 'Font Awesome 5 Free'");
 	solvedCanvas.putText(130, 130, "vote: " + solvedData.vote_count, "14px verdana, sans-serif");
 	solvedCanvas.putText(240, 140, "solved.ac", "10px verdana, sans-serif")
 	solvedCanvas.render();

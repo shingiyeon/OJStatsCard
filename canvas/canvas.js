@@ -6,7 +6,7 @@ class Canvas {
 		this.canvas.id = id;
 		this.canvas.width = width;
 		this.canvas.height = height;
-		this.canvas.style.position = "absolute";
+		this.canvas.style.position = "flex";
 
 		document.body.appendChild(this.canvas);
 		this.ctx = this.canvas.getContext("2d");
