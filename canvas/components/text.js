@@ -26,4 +26,8 @@ class Text {
         this.ctx.textBaseline = this.textBaseline;
         this.ctx.fillText(this.text, this.x, this.y);
     }
+
+    update() {
+        
+    }
 };

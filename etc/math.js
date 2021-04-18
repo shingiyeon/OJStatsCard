@@ -8,6 +8,11 @@ function max(a, b) {
 	return a > b ? a : b;
 }
 
+function abs(a, b) {
+    if(a - b < 0) return b - a;
+    else return a - b;
+}
+
 function digit(a) {
 	let num = 0;
 	while(a) {

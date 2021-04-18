@@ -17,14 +17,22 @@ const cofoRating = [
 ]
 
 const cofoLv = [
-    "Legendary Grandmaster",
-    "International Grandmaster",
-    "Grandmaster",
-    "International Master",
-    "Master",
-    "Candidate Master",
-    "Expert",
-    "Specialist",
+    "Newbie",
     "Pupil",
-    "Newbie"
+    "Specialist",
+    "Expert",
+    "Candidate Master",
+    "Master",
+    "International Master",
+    "Grandmaster",
+    "International Grandmaster",
+    "Legendary Grandmaster",
+]
+
+const cofoBgColor = [
+    "#1782C5",
+    "#00000C",
+    "#445F9D",
+    "#3c5Cf0",
+    "#FC466B"
 ]

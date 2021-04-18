@@ -18,4 +18,8 @@ class Line {
         this.ctx.strokeStyle = this.strokeStyle;
         this.ctx.stroke();
     }
+
+    update() {
+        
+    }
 };

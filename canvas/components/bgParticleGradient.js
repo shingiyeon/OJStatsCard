@@ -27,10 +27,11 @@ class bgParticleGradient {
 		for(let i = 0; i < num; i++) {
 			console.log(colors[idx]);
 			this.createParticle(colors[idx]);		
-			idx = (idx + num + 1e9 + 7) % colors.length;
+			idx = (idx + num) % colors.length;
 		}
 		console.log(this.particles);
 	}
+	
 	update() {
 		this.particles.forEach( (particle) => {
 			particle.update(this.width, this.height);

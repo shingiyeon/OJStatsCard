@@ -18,4 +18,8 @@ class ImageDrawing {
     draw() {
         this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
+
+    update() {
+        
+    }
 }

@@ -11,10 +11,14 @@ class Canvas {
 		document.body.appendChild(this.canvas);
 		this.ctx = this.canvas.getContext("2d");
 		this.bgGradient = null;
-		this.lines = [];
-		this.images = [];
-		this.texts = [];
-		this.loadingBars = []
+
+		this.objects = [];
+
+		// this.lines = [];
+		// this.images = [];
+		// this.texts = [];
+		// this.rectangles = [];
+		// this.loadingBars = [];
 	}
 
 	setBorder(border) {
@@ -54,21 +58,29 @@ class Canvas {
 	}
 
 	putImage(x, y, width, height, imageSrc) {
-		this.images.push(new ImageDrawing(this.ctx, x, y, width, height, imageSrc));
+		this.objects.push(new ImageDrawing(this.ctx, x, y, width, height, imageSrc));
 	}
 
 	putLine(sx, sy, ex, ey, strokeStyle = "#ffffff", lineWidth = 1) {
-		this.lines.push(new Line(this.ctx, sx, sy, ex, ey, strokeStyle, lineWidth));
+		this.objects.push(new Line(this.ctx, sx, sy, ex, ey, strokeStyle, lineWidth));
 	}
 
 	putText(x, y, text = "TEMP", font = "bold 15px verdana, sans-serif",
 		fontStyle = "#ffffff", textBaseline = "middle"
 	) {
-		this.texts.push(new Text(this.ctx, x, y, text, font, fontStyle, textBaseline));
+		this.objects.push(new Text(this.ctx, x, y, text, font, fontStyle, textBaseline));
 	}
 
 	putLoadingBar(sx, sy, mx, my, ex, ey, color1 = "#000000", color2 = "#ffffff", bgColor = "#ffffff") {
-		this.loadingBars.push(new LoadingBar(this.ctx, sx, sy, mx, my, ex, ey, color1, color2, bgColor));
+		this.objects.push(new LoadingBar(this.ctx, sx, sy, mx, my, ex, ey, color1, color2, bgColor));
+	}
+
+	putRectangle(sx, sy, ex, ey, color = "#000000") {
+		this.objects.push(new Rectangle(this.ctx, sx, sy, ex, ey, color));
+	}
+
+	putRoundRect(sx, sy, ex, ey, radius, color = "#000000") {
+		this.objects.push(new RoundRect(this.ctx, sx, sy, ex, ey, radius, color));
 	}
 
 	render() {
@@ -78,19 +90,28 @@ class Canvas {
 			this.bgGradient.draw();
 			this.bgGradient.update();
 		}
-		this.lines.forEach((line) => {
-			line.draw();
+
+		this.objects.forEach((object) => {
+			object.draw();
+			object.update();
 		});
-		this.images.forEach((image) => {
-			image.draw();
-		});
-		this.texts.forEach((text) => {
-			text.draw();
-		});
-		this.loadingBars.forEach((loadingBar) => {
-			loadingBar.draw();
-			loadingBar.update();
-		})
+
+		// this.lines.forEach((line) => {
+		// 	line.draw();
+		// });
+		// this.images.forEach((image) => {
+		// 	image.draw();
+		// });
+		// this.texts.forEach((text) => {
+		// 	text.draw();
+		// });
+		// this.rectangles.forEach((rect) => {
+		// 	rect.draw();
+		// })
+		// this.loadingBars.forEach((loadingBar) => {
+		// 	loadingBar.draw();
+		// 	loadingBar.update();
+		// })
 
 		requestAnimationFrame(() => {this.render();});
 
