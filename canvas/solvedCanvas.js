@@ -11,13 +11,13 @@ async function drawSolvedCanvas(solvedData) {
 	solvedCanvas.putText(65, 55, solvedLv[solvedData.level], "bold 15px verdana, sans-serif", "5px")
   
 	solvedCanvas.putText(223, 24, "AC Rating", "12px verdana, sans-serif", "#eeeeee", "5px");
-	solvedCanvas.putText(getXOfRating(solvedData.rating), 48, solvedData.rating, "bold 28px Arial ", solvedColorTable[solvedData.level], "5px", "white");
+	solvedCanvas.putText(getXOfSolvedRating(solvedData.rating), 48, solvedData.rating, "bold 28px Arial ", solvedColorTable[solvedData.level], "5px", "white");
 
 	solvedCanvas.setBgParticleGradient(150, 300);
 	solvedCanvas.putParticles(8, solvedBgColor);
 	
-	const requiredRating = await getRequiredRating(solvedData);
-	const mx = await getRatingLength(280 - 15, requiredRating, solvedRating[solvedData.level], solvedRating[solvedData.level+1]);
+	const requiredRating = await getRequiredSolvedRating(solvedData);
+	const mx = await getSolvedRatingLength(280 - 15, requiredRating, solvedRating[solvedData.level], solvedRating[solvedData.level+1]);
 	
 	solvedCanvas.putText(210, 75, String(solvedData.rating) + " / " + String(solvedRating[solvedData.level+1]), "12px verdana, sans-serif")
 	solvedCanvas.putLoadingBar(15, 80, mx + 15, 90, 280, 90, "#1d2671", "#0a0328", "#ffffff");
@@ -43,7 +43,7 @@ async function drawSolvedCanvas(solvedData) {
 	solvedCanvas.render();
 }
 
-function getRequiredRating(solvedData) {
+function getRequiredSolvedRating(solvedData) {
 	let nextRating;
 	let lv = solvedData.level;
 	if (lv === 31) return 0;
@@ -52,14 +52,13 @@ function getRequiredRating(solvedData) {
 	return nextRating - solvedData.rating;
 }
 
-function getRatingLength(length, requiredRating, curLvRating, nextLvRating) {
+function getSolvedRatingLength(length, requiredRating, curLvRating, nextLvRating) {
 	if(nextLvRating === curLvRating) return length;
 	return length - (requiredRating / (nextLvRating - curLvRating) ) * length;
 }
 
-function getXOfRating(currentRating) {
+function getXOfSolvedRating(currentRating) {
 	let digit_num = digit(currentRating);
-	console.log("digit_num: ", digit_num);
 	if(digit_num == 1) {
 		return 245;
 	}
