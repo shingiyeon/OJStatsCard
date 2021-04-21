@@ -79,7 +79,7 @@ async function cofoProblemAnalyzer(handle) {
 
 	dataObj["totalSubmission"] = totalSubmission;
 	dataObj["totalOK"] = totalOK;
-	dataObj["sovledProblem"] = solvedProblem;
+	dataObj["solvedProblem"] = solvedProblem;
 	dataObj["verdict"] = verdictObj;
 	dataObj["language"] = languageObj;
 

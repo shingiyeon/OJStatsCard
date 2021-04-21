@@ -41,6 +41,24 @@ async function drawCofoCanvas(cofoData) {
 	cofoCanvas.putLoadingBar(15, 75, getCofoRatingLength(getNeededPercentageCofoRating(lv, cofoData.rating), 15, 280),
      85, 280, 85, "#1d2671", "#0a0328", "#ffffff");
 
+    cofoCanvas.putText(10, 103, "\uf518", "900 13px 'Font Awesome 5 Free'");
+    cofoCanvas.putText(30, 103, "solved: " + cofoData.solvedProblem, "13px verdana, sans-serif");
+
+    cofoCanvas.putText(125, 103, '\uf00c', "900 13px 'Font Awesome 5 Free'");
+    cofoCanvas.putText(140, 103, "Answer Rate: " + String(getCofoAnsRatio(cofoData.totalOK, cofoData.totalSubmission)) + " %", "13px verdana, sans-serif");
+
+
+    cofoCanvas.putText(10, 120, "\uf56f", "900 13px 'Font Awesome 5 Free'");
+    cofoCanvas.putText(30, 120, "submission: " + cofoData.totalSubmission, "13px verdana, sans-serif");
+    
+    
+
+    
+    cofoCanvas.putText(10, 137, '\uf772', "900 13px 'Font Awesome 5 Free'");
+    cofoCanvas.putText(30, 137, "contribution: " + cofoData.contribution, "13px verdana, sans-serif");
+    
+    cofoCanvas.putText(215, 140, "codeforces.com", "10px verdana, sans-serif")
+
     cofoCanvas.render();
 }
 
@@ -77,6 +95,10 @@ function getNeededPercentageCofoRating(lv, currentRating) {
 
 function getCofoRatingLength(percentage, sx, ex) {
     return (ex - sx) * percentage + sx;
+}
+
+function getCofoAnsRatio(ok, submission) {
+    return ( (ok / submission) * 100 ).toFixed(2) ;
 }
 
 
